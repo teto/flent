@@ -21,7 +21,6 @@
 
 import json, sys, csv, math, inspect, os, re
 
-from . import plotters
 from .util import cum_prob, frange, classname, long_substr
 from .resultset import ResultSet
 from .build_info import DATA_DIR, VERSION
@@ -221,6 +220,12 @@ class PlotFormatter(Formatter):
 
     def __init__(self, settings):
         Formatter.__init__(self, settings)
+        try:
+            from . import plotters
+            plotters.init_matplotlib(settings)
+        except ImportError:
+            raise RuntimeError("Unable to plot -- matplotlib is missing! Please install it if you want plots.")
+
         self.plotter = plotters.new(settings)
 
     def init_plots(self):
