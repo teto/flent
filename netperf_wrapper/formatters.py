@@ -228,6 +228,7 @@ class PlotFormatter(Formatter):
 
         self.plotter = plotters.new(settings)
         self.plotter.init()
+        self.figure = self.plotter.figure
 
     def init_plots(self):
         self.plotter.clear()
