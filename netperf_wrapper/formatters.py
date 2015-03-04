@@ -469,8 +469,8 @@ class PlotFormatter(Formatter):
             return
 
         self.plotter.subplot_combine_disabled = False
-        artists = self.plotter.plot(results)
-        self.plotter.save(results, artists)
+        self.plotter.plot(results)
+        self.plotter.save(results)
 
 
 class MetadataFormatter(Formatter):
