@@ -19,4 +19,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__all__ = ['aggregators', 'build_info', 'formatters', 'gui', 'orderreddict', 'resultset', 'runners', 'settings', 'transformers', 'util']
+__all__ = ['aggregators', 'build_info', 'combiners', 'formatters', 'gui',
+           'orderreddict', 'plotters', 'resultset', 'runners', 'settings',
+           'testenv', 'transformers', 'util']
