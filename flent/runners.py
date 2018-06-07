@@ -1380,7 +1380,7 @@ class DashJsRunner(RegexpRunner):
 class IperfCsvRunner(ProcessRunner):
     """Runner for iperf csv output (-y C), possibly with unix timestamp patch."""
 
-    transformed_metadata = ('MEAN_VALUE',)
+    transformed_metadata = ('MEAN_VALUE', 'TOTAL_LENGTH')
 
     def __init__(self, host, interval, length, ip_version, local_bind=None,
                  no_delay=False, udp=False, bw=None, marking=None, **kwargs):
@@ -1422,6 +1422,9 @@ class IperfCsvRunner(ProcessRunner):
                 val = transformers.bits_to_mbits(float(bandwidth))
                 result.append([timestamp, val])
                 raw_values.append({'t': timestamp, 'val': val})
+                # MATT hopefully that works
+                # that should be done at the end rather
+                self.metadata['TOTAL_LENGTH'] = timestamp - raw_values[0]["t"]
             except ValueError:
                 pass
 
@@ -1435,6 +1438,7 @@ class IperfCsvRunner(ProcessRunner):
                     float(parts[8]))
             else:
                 self.metadata['MEAN_VALUE'] = None
+            
         except (ValueError, IndexError):
             pass
         return result
