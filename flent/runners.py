@@ -1048,6 +1048,14 @@ class NetperfDemoRunner(ProcessRunner):
         super(NetperfDemoRunner, self).check()
 
 
+class NetperfDemo2Runner(NetperfDemoRunner):
+
+    def parse(self, output, error=""):
+        # res = super().parse( *args, **kwargs)
+        result = super(NetperfDemo2Runner, self).parse(output, error)
+        return [ self.metadata['ELAPSED_TIME'] ]
+
+
 class RegexpRunner(ProcessRunner):
 
     """Runner that matches each line to one or more regular expressions,
